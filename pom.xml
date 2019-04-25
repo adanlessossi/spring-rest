@@ -10,7 +10,7 @@
 		<version>2.2.0.M1</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	
+
 	<groupId>com.businessdecision.rest</groupId>
 	<artifactId>spring-rest</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
@@ -48,6 +48,11 @@
 			<groupId>org.springframework.hateoas</groupId>
 			<artifactId>spring-hateoas</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			</dependency>
 
 		<dependency>
 			<groupId>com.h2database</groupId>
