@@ -5,6 +5,9 @@ package com.businessdecision.rest.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -17,8 +20,11 @@ import io.swagger.annotations.ApiModelProperty;
  *
  */
 @ApiModel(description = "Details about Users")
+@Entity
 public class User{
 
+	@Id
+	@GeneratedValue
 	private Integer userId;
 	
 	@Size(min = 2, message = "Name should have at least 2 characters")
