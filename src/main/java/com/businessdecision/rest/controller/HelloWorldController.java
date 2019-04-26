@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.businessdecision.rest.domain.HelloWorldBean;
 
 /**
+ * A simple HelloWorld REST Controller.
  * @author bernard.adanlessossi
  *
  */

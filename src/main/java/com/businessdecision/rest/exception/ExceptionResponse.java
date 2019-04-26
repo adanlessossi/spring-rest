@@ -6,6 +6,7 @@ package com.businessdecision.rest.exception;
 import java.util.Date;
 
 /**
+ * Response to be returned when a exception occurs.
  * @author bernard.adanlessossi
  *
  */
@@ -18,9 +19,10 @@ public class ExceptionResponse {
 	private String details;
 
 	/**
-	 * @param timestamp
-	 * @param message
-	 * @param details
+	 * Creates this.
+	 * @param timestamp the exception timestamp
+	 * @param message the exception message
+	 * @param details the exception details
 	 */
 	public ExceptionResponse(Date timestamp, String message, String details) {
 		super();
@@ -30,6 +32,7 @@ public class ExceptionResponse {
 	}
 
 	/**
+	 * Gets the exception Timestamp.
 	 * @return the timestamp
 	 */
 	public Date getTimestamp() {
@@ -37,6 +40,7 @@ public class ExceptionResponse {
 	}
 
 	/**
+	 * Sets the exception Timestamp.
 	 * @param timestamp the timestamp to set
 	 */
 	public void setTimestamp(Date timestamp) {
@@ -44,6 +48,7 @@ public class ExceptionResponse {
 	}
 
 	/**
+	 * Gets the exception message.
 	 * @return the message
 	 */
 	public String getMessage() {
@@ -51,6 +56,7 @@ public class ExceptionResponse {
 	}
 
 	/**
+	 * Sets the exception message.
 	 * @param message the message to set
 	 */
 	public void setMessage(String message) {
@@ -58,6 +64,7 @@ public class ExceptionResponse {
 	}
 
 	/**
+	 * Gets the exception details.
 	 * @return the details
 	 */
 	public String getDetails() {
@@ -65,6 +72,7 @@ public class ExceptionResponse {
 	}
 
 	/**
+	 * Sets the exception details.
 	 * @param details the details to set
 	 */
 	public void setDetails(String details) {

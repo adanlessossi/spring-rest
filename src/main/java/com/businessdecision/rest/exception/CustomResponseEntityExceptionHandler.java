@@ -16,6 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
+ * A custom general exception handler for the REST API.
  * @author bernard.adanlessossi
  *
  */
@@ -23,6 +24,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestController
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
+	/**
+	 * Handles all instances of {@link Exception}.
+	 * @param ex the exception
+	 * @param request the request
+	 * @return a response entity
+	 * @throws Exception when things are wrong
+	 */
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Object> handleAllException(Exception ex, WebRequest request) throws Exception {
 
@@ -32,6 +40,13 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 		return new ResponseEntity<Object>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
+	/**
+	 * Handles exceptions of type {@link UserNotFoundException}.
+	 * @param ex the exception
+	 * @param request the web request
+	 * @return the response
+	 * @throws Exception if things get worse
+	 */
 	@ExceptionHandler(UserNotFoundException.class)
 	public ResponseEntity<Object> handleUserException(UserNotFoundException ex, WebRequest request) throws Exception {
 
@@ -40,8 +55,11 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 		return new ResponseEntity<Object>(exceptionResponse, HttpStatus.NOT_FOUND);
 	}
 
+	/**
+	 * Handles invalid argument exceptions.
+	 */
 	@Override
-	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+	public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), "Validation failed!",

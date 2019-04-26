@@ -38,11 +38,21 @@ public class UserResource {
 	@Autowired
 	private UserDAOService service;
 
+	/**
+	 * Gets all {@link User}'s.
+	 * @return the list of users
+	 */
 	@GetMapping("/users")
 	public List<User> getAllUsers() {
 		return service.findAll();
 	}
 
+	/**
+	 * Finds a single {@link User} by id.
+	 * @param userId the user id
+	 * @return the user
+	 * @throws UserNotFoundException if not found
+	 */
 	@GetMapping("/users/{userId}")
 	public Resource<User> getOneUser(@PathVariable Integer userId) throws UserNotFoundException {
 		User user = service.findOne(userId);
@@ -51,12 +61,16 @@ public class UserResource {
 		}
 		// HATEOAS --> provide link back to all users
 		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getAllUsers());
-		Resource<User> resource = new Resource<User>(user);
-		
+		Resource<User> resource = new Resource<User>(user);		
 	    resource.add(linkTo.withRel("all-users"));
 		return resource;
 	}
 	
+	/**
+	 * Delete the {@link User} by id.
+	 * @param userId the user id
+	 * @throws UserNotFoundException if not existing
+	 */
 	@DeleteMapping("/users/{userId}")
 	public void deleteById(@PathVariable Integer userId) throws UserNotFoundException {
 		User user = service.deleteById(userId);
@@ -65,6 +79,11 @@ public class UserResource {
 		}
 	}
 
+	/**
+	 * Creates a new {@link User}.
+	 * @param user the user to create
+	 * @return the newly created user
+	 */
 	@PostMapping("/users")
 	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
 		User savedUser = service.save(user);

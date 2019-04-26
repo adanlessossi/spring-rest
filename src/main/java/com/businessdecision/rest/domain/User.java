@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
+ * The details about a user.
  * @author bernard.adanlessossi
  *
  */
@@ -36,9 +37,10 @@ public class User{
 	}
 
 	/**
-	 * @param id
-	 * @param name
-	 * @param birthDate
+	 * Creates this with parameters.
+	 * @param userId the user Id
+	 * @param name the name
+	 * @param birthDate the birthdate
 	 */
 	public User(final Integer userId, final String name, final Date birthDate) {
 		this.userId = userId;
@@ -47,6 +49,7 @@ public class User{
 	}
 
 	/**
+	 * Gets the user id.
 	 * @return the userId
 	 */
 	public Integer getUserId() {
@@ -54,6 +57,7 @@ public class User{
 	}
 
 	/**
+	 * Sets the user id.
 	 * @param id the id to set
 	 */
 	public void setUserId(final Integer userId) {
@@ -61,6 +65,7 @@ public class User{
 	}
 
 	/**
+	 * Gets the user name.
 	 * @return the name
 	 */
 	public String getName() {
@@ -68,6 +73,7 @@ public class User{
 	}
 
 	/**
+	 * Sets the user name.
 	 * @param name the name to set
 	 */
 	public void setName(final String name) {
@@ -75,6 +81,7 @@ public class User{
 	}
 
 	/**
+	 * Gets the user birthdate.
 	 * @return the birthDate
 	 */
 	public Date getBirthDate() {
@@ -82,6 +89,7 @@ public class User{
 	}
 
 	/**
+	 * Sets the user birthdate.
 	 * @param birthDate the birthDate to set
 	 */
 	public void setBirthDate(final Date birthDate) {
