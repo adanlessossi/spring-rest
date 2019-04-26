@@ -2,16 +2,17 @@
  * 
  */
 package com.businessdecision.rest.controller;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import java.net.URI;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.hateoas.Resource;
+import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,31 +43,32 @@ public class UserResource {
 		return service.findAll();
 	}
 
-	@GetMapping("/users/{id}")
-	public EntityModel<User> getOneUser(@PathVariable Integer id) throws UserNotFoundException {
-		User user = service.findOne(id);
+	@GetMapping("/users/{userId}")
+	public Resource<User> getOneUser(@PathVariable Integer userId) throws UserNotFoundException {
+		User user = service.findOne(userId);
 		if (user == null) {
-			throw new UserNotFoundException("id-" + id);
+			throw new UserNotFoundException("id-" + userId);
 		}
 		// HATEOAS --> provide link back to all users
-	    EntityModel<User> model = new EntityModel<>(user);
-	    WebMvcLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getAllUsers());
-	    model.add(linkTo.withRel("all-users"));
-		return model;
+		ControllerLinkBuilder linkTo = linkTo(methodOn(this.getClass()).getAllUsers());
+		Resource<User> resource = new Resource<User>(user);
+		
+	    resource.add(linkTo.withRel("all-users"));
+		return resource;
 	}
 	
-	@DeleteMapping("/users/{id}")
-	public void deleteById(@PathVariable Integer id) throws UserNotFoundException {
-		User user = service.deleteById(id);
+	@DeleteMapping("/users/{userId}")
+	public void deleteById(@PathVariable Integer userId) throws UserNotFoundException {
+		User user = service.deleteById(userId);
 		if (user == null) {
-			throw new UserNotFoundException("id-" + id);
+			throw new UserNotFoundException("userId-" + userId);
 		}
 	}
 
 	@PostMapping("/users")
 	public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
 		User savedUser = service.save(user);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedUser.getId())
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{userId}").buildAndExpand(savedUser.getUserId())
 				.toUri();
 		return ResponseEntity.created(location).build();
 	}

@@ -12,9 +12,9 @@ import javax.validation.constraints.Size;
  * @author bernard.adanlessossi
  *
  */
-public class User {
+public class User{
 
-	private Integer id;
+	private Integer userId;
 	
 	@Size(min = 2, message = "Name should have at least 2 characters")
 	private String name;
@@ -34,24 +34,24 @@ public class User {
 	 * @param name
 	 * @param birthDate
 	 */
-	public User(final Integer id, final String name, final Date birthDate) {
-		this.id = id;
+	public User(final Integer userId, final String name, final Date birthDate) {
+		this.userId = userId;
 		this.name = name;
 		this.birthDate = birthDate;
 	}
 
 	/**
-	 * @return the id
+	 * @return the userId
 	 */
-	public Integer getId() {
-		return id;
+	public Integer getUserId() {
+		return userId;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(final Integer id) {
-		this.id = id;
+	public void setUserId(final Integer userId) {
+		this.userId = userId;
 	}
 
 	/**
@@ -84,6 +84,6 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", birthDate=" + birthDate + "]";
+		return "User [userId=" + userId + ", name=" + name + ", birthDate=" + birthDate + "]";
 	}
 }

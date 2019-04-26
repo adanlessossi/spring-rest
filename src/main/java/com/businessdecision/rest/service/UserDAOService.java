@@ -37,8 +37,8 @@ public class UserDAOService {
 	}
 	
 	public User save(final User user) {
-		if (user.getId() == null) {
-			user.setId(++userCount);
+		if (user.getUserId() == null) {
+			user.setUserId(++userCount);
 		}
 		users.add(user);
 		return user;
@@ -46,7 +46,7 @@ public class UserDAOService {
 	
 	public User findOne(final Integer id) {
 		for (User user : users) {
-			if (user.getId() == id) {
+			if (user.getUserId() == id) {
 				return user;
 			}
 		}
@@ -57,7 +57,7 @@ public class UserDAOService {
 		Iterator<User> iter = users.iterator();
 		while(iter.hasNext()) {
 			User user = iter.next();
-			if (user.getId() == id) {
+			if (user.getUserId() == id) {
 				iter.remove();
 				return user;
 			}
