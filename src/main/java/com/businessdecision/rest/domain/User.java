@@ -4,10 +4,12 @@
 package com.businessdecision.rest.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -34,6 +36,9 @@ public class User{
 	@Past
 	@ApiModelProperty(notes = "The Birthdate property should be in the past")
 	private Date birthDate;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Post> posts;
 
 	/**
 	 * Creates this.
@@ -100,6 +105,22 @@ public class User{
 	 */
 	public void setBirthDate(final Date birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	/**
+	 * Gets the posts.
+	 * @return the posts
+	 */
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	/**
+	 * Sets the posts.
+	 * @param posts the posts to set
+	 */
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	@Override
